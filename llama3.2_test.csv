@@ -1,0 +1,255 @@
+,id,study.name,effect.key,b,s,n,specialty,outcome.group,outcome.flag,outcome.nr,comparison.nr,RCT,study.year,outcome_name,comparison_name,z,gold_answer_GPT4,llama3-8b-8192,llama3-70b-8192,llama-3.1-70b-versatile,mixtral-8x7b-32768,gemma-7b-it,human_response,MV,llama3-8b-8192_cleaned,llama3-70b-8192_cleaned,llama-3.1-70b-versatile_cleaned,mixtral-8x7b-32768_cleaned,gemma-7b-it_cleaned,MV_cleaned,gold_answer_GPT4_cleaned,gemini-1.5-flash-002,gemini-1.5-flash-002_tokens,gemini-1.5-flash-002_logprobs,gemini-1.5-pro-002,gemini-1.5-flash-002_cleaned,gemini-1.5-pro-002_cleaned,meta-llama/Llama-3.2-1B-Instruct
+0,CD000004,Blecher 1967,STD-Blecher-1967 0.362 0.353 42 38,-1.55227949859415,0.509869905232146,80,Pregnancy & Childbirth,efficacy,DICH,1,1,no,1967.0,Unchanged or worsening pre-eclampsia,Abdominal decompression for suspected fetal compromise/pre-eclampsia,-3.04446189638785,negative,negative,negative,negative.,negative,"negative.
+
+the outcome",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9981614395267993,"negative
+",neg,neg,negative.
+1,CD000006,Banninger 1978,STD-Banninger-1978 0.441 0.282 80 73,-1.13370360847938,0.379196674468605,153,Pregnancy & Childbirth,efficacy,DICH,1,1,no,1978.0,Short-term pain: pain at day 3 or less (women experiencing any pain),Synthetic sutures versus catgut,-2.9897509256064,negative,neutral,negative,negative.,"negative, as it refers","negative.
+
+pain is",neg,negative,neu,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9947790259105216,"negative
+",neg,neg,positive
+2,CD000006,Gemynthe 1996,STD-Gemynthe-1996 1.016 0.035 155 153,0.182521376956474,0.411034252051126,308,Pregnancy & Childbirth,efficacy,DICH,1,2,yes,1996.0,Short-term pain: at 3 days or less,Fast-absorbing synthetic versus standard absorbable synthetic material,0.444053934789288,neutral,neutral,positive,negative,positive,"negative.
+
+short-",neg,negative,neu,pos,neg,pos,neg,neg,neu,"positive
+",positive,0.7095214431040864,"negative
+",pos,neg,positive
+3,CD000006,Saint 1993,STD-Saint-1993 0.989 0.026 418 418,-0.0893709058995314,0.211484847970904,836,Pregnancy & Childbirth,efficacy,DICH,1,3,no,1993.0,Short-term pain: pain at 3 days or less,Glycerol impregnated catgut (softgut) versus chromic catgut,-0.422587749226493,negative,neutral,negative,negative.,"negative, because it refers","negative.
+
+pain is",neg,negative,neu,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9977716267183552,"negative
+",neg,neg,positive
+4,CD000007,Abu Dhabi 1997,STD-Abu-Dhabi-1997 0.529 0.172 827 821,-0.692206245543344,0.18600035093523,1648,Pregnancy & Childbirth,efficacy,DICH,1,1,no,1997.0,PPH clinically estimated blood loss greater than or equal to 500mls,Active vs expectant management (all women),-3.72153193293913,negative,negative,negative,negative.,negative,"negative.
+
+a clinically",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.983214769476174,"negative
+",neg,neg,negative.
+5,CD000009,Aycicegi-Dinn 2011,STD-Aycicegi_x002d_Dinn-2011 0.319 1.117 24 23,-1.23837423104327,1.19449219093425,47,Psychiatry & Mental Health,efficacy,DICH,1,8,no,2011.0,Short-term smoking cessation,Electrostimulation vs sham stimulation,-1.03673698366726,positive,positive,positive,positive,positive,"positive.
+
+smoking cessation",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9997544718169792,"positive
+",pos,pos,positive
+6,CD000009,Cai 2000,STD-Cai-2000 0.992 0.239 160 170,-0.0101523714640182,0.28942396888688,330,Psychiatry & Mental Health,efficacy,DICH,1,7,no,2000.0,Short-term smoking cessation,Laser therapy vs sham laser,-0.0350778530992579,positive,positive,positive,positive,positive,"positive.
+
+smoking cessation",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.99833854384896,"positive
+",pos,pos,positive
+7,CD000009,Clavel 1985,STD-Clavel-1985 0.855 0.189 224 205,-0.197034109841127,0.238346626665503,429,Psychiatry & Mental Health,efficacy,DICH,1,3,no,1985.0,NRT,Acupuncture vs other intervention,-0.82667043623674,neutral,neutral,negative,negative.,"neutral
+
+","neutral.
+
+the outcome",neu,negative,neu,neg,neg,neu,neu,neg,neu,"negative
+",negative,0.5578864120259662,"negative
+",neg,neg,negative.
+8,CD000009,Clavel 1992,STD-Clavel-1992 0.858 0.182 272 243,-0.189777857470409,0.224675246072811,515,Psychiatry & Mental Health,efficacy,DICH,1,2,no,1990.0,Short-term smoking cessation,Acupuncture vs sham acupuncture,-0.844676308528033,positive,positive,positive,positive,positive,"positive.
+
+smoking cessation",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9991830397938536,"positive
+",pos,pos,positive
+9,CD000009,Lamontagne 1980,STD-Lamontagne-1980 1.4 0.513 25 25,0.441832752279039,0.669636243353583,50,Psychiatry & Mental Health,efficacy,DICH,1,1,no,1980.0,Short-term smoking cessation,Acupuncture vs waiting list/no intervention,0.659810093411778,positive,positive,positive,positive,positive,"positive.
+
+smoking cessation",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9952069032259776,"positive
+",pos,pos,positive
+10,CD000009,Li 2009,STD-Li-2009 2.5 0.383 70 70,1.1314021114911,0.459487793372212,140,Psychiatry & Mental Health,efficacy,DICH,1,5,no,2009.0,Short-term smoking cessation,Acupressure vs sham acupressure,2.46231157347547,positive,positive,positive,positive,positive,"positive.
+
+smoking cessation",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.998967702486048,"positive
+",pos,pos,positive
+11,CD000009,Tian 1996,STD-Tian-1996 13 0.711 60 60,3.09903184339179,0.764927893646039,120,Psychiatry & Mental Health,efficacy,DICH,1,4,no,1996.0,Short-term smoking cessation,Acupressure vs waiting list/no intervention,4.05140388935252,positive,positive,positive,positive,positive,"positive.
+
+smoking cessation",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9991304277272892,"positive
+",pos,pos,positive
+12,CD000009,Yeh 2009,STD-Yeh-2009 0.967 0.657 30 29,-0.0392207131532814,0.760566590418971,59,Psychiatry & Mental Health,efficacy,DICH,1,6,no,2009.0,Short-term smoking cessation,Continuous auricular stimulation vs sham stimulation,-0.0515677570476452,positive,positive,positive,positive,positive,"positive.
+
+short-",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9954612189403396,"positive
+",pos,pos,positive
+13,CD000010,Kamolratanakul 1999,STD-Kamolratanakul-1999 1.135 0.044 414 422,0.446479824178497,0.154930393353026,836,Infectious Diseases,efficacy,DICH,1,5,no,1999.0,Cure,Active TB: Direct observation of treatment vs self-supervision,2.88180914354966,positive,positive,positive,positive,positive,"positive.
+
+a cure",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9999254992953154,"positive
+",pos,pos,negative.
+14,CD000010,Krishnaswami 1981,STD-Krishnaswami-1981 1.325 0.131 75 75,0.745718067569283,0.343356809389702,150,Infectious Diseases,efficacy,DICH,1,2,no,1981.0,Completion of treatment,Active TB: Intensive vs routine defaulter action,2.17184586755322,positive,positive,positive,positive,positive,"positive.
+
+completion of",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9999263332235302,"positive
+",pos,pos,positive
+15,CD000010,Liefooghe 1999,STD-Liefooghe-1999 1.131 0.07 504 515,0.221918811418314,0.126275790603506,1019,Infectious Diseases,efficacy,DICH,1,3,no,1999.0,Completed treatment,Active TB:Counselling/health education vs. routine care,1.75741375569857,positive,positive,positive,positive,positive,"positive.
+
+completed treatment",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9997997901446686,"positive
+",pos,pos,positive
+16,CD000010,Malotte 1998,STD-Malotte-1998 2.6 0.145 204 100,2.50567520186153,0.292276320923085,304,Infectious Diseases,efficacy,DICH,1,11,no,1998.0,Keeping first appointment,TB evaluation: Incentive ($5) vs routine care,8.57296682108202,positive,positive,positive,positive,positive,"positive.
+
+keeping the",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9967836823669932,"positive
+",pos,pos,positive
+17,CD000010,Morisky 1990,STD-Morisky-1990 1.072 0.052 43 45,1.41039191269895,1.13938569751948,88,Infectious Diseases,efficacy,DICH,1,4,no,1990.0,Completion of treatment,Active TB: Incentive plus health education vs routine care,1.23785292001599,positive,positive,positive,positive,positive,"positive.
+
+completion of",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9994967058650048,"positive
+",pos,pos,positive
+18,CD000010,Paramasivan 1993,STD-Paramasivan-1993 1.205 0.071 100 100,0.997807589546144,0.381356312221252,200,Infectious Diseases,efficacy,DICH,1,1,no,1993.0,Completion of treatment,Active TB: Defaulter action vs no defaulter action,2.61647062751972,positive,positive,positive,positive,positive,"positive.
+
+completion of",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9999239505219082,"positive
+",pos,pos,positive
+19,CD000010,Sanmarti 1993,STD-Sanmarti-1993 1.312 0.078 80 77,1.79175946922805,0.526279105579632,157,Infectious Diseases,efficacy,DICH,1,9,no,1993.0,Completion of treatment,Prophylaxis: Health education vs no health education,3.40458028873226,positive,positive,positive,positive,positive,"positive.
+
+completion of",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.998939626094152,"positive
+",pos,pos,positive
+20,CD000010,Tanke 1997,STD-Tanke-1997 1.051 0.025 376 325,0.537339000164863,0.264012265967145,701,Infectious Diseases,efficacy,DICH,1,19,no,1997.0,Keeping first appointment,TB Evaluation: Reminders vs no reminders,2.03528043743139,positive,positive,positive,positive,positive,"positive.
+
+keeping the",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.999256126671048,"positive
+",pos,pos,positive
+21,CD000010,Tulsky 2000,STD-Tulsky-2000 1.679 0.321 43 38,0.796004565999653,0.479596216966232,81,Infectious Diseases,efficacy,DICH,1,7,no,2000.0,Completion of preventive therapy,Prophylaxis: Incentive ($5) vs routine care,1.65973904263657,positive,positive,positive,positive,positive,"positive.
+
+completion of",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9998727028729668,"positive
+",pos,pos,positive
+22,CD000010,White 1998,STD-White-1998 1.106 0.45 31 30,0.133531392624523,0.595662374668967,61,Infectious Diseases,efficacy,DICH,1,8,no,1998.0,Keeping first appointment,Prophylaxis: Incentive ($5) plus health education vs health education alone,0.224172951495772,positive,positive,positive,positive,positive,"positive.
+
+keeping the",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9984129224416946,"positive
+",pos,pos,positive
+23,CD000010,Wurtele 1980,STD-Wurtele-1980 1.102 0.034 629 653,0.366062083519659,0.127404050228936,1282,Infectious Diseases,efficacy,DICH,1,17,no,1980.0,Keeping first appointment,TB Evaluation: Verbal contract vs no contract,2.87323741169822,positive,positive,positive,positive,positive,"positive.
+
+keeping the",pos,negative,pos,pos,pos,pos,pos,neg,pos,"positive
+",positive,0.9974896755475045,"positive
+",pos,pos,positive
+24,CD000012,Begley 2009,STD-Begley-2009 1.237 0.149 1059 549,0.240453099890958,0.16737008325693,1608,Pregnancy & Childbirth,efficacy,DICH,1,1,yes,2009.0,No analgesia/anesthesia,Alternative versus conventional birth settings - all trials,1.43665519674647,neutral,neutral,negative,negative.,negative,"neutral.
+
+the absence",pos,negative,neu,neg,neg,neg,neu,neg,neu,"negative
+",negative,0.9868977279655562,"neutral
+",neg,neu,negative.
+25,CD000013,Amin 2003,STD-Amin-2003 0.294 0.484 80 80,-1.39812881876689,0.536684151636802,160,Pregnancy & Childbirth,efficacy,DICH,1,1,no,2003.0,"Caesarean section, overall","Transcervical amnioinfusion for intrapartum umbilical cord compression (potential, or diagnosed by EFM)*",-2.60512410232876,negative,negative,negative,negative.,negative,"negative.
+
+caes",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9901411839211304,"negative
+",neg,neg,negative.
+26,CD000013,Vergani 1996,STD-Vergani-1996 0.127 0.717 37 33,-2.55681923137829,0.807856162288417,70,Pregnancy & Childbirth,efficacy,DICH,1,2,yes,1996.0,Suspicious/ominous fetal heart rate pattern,"Transabdominal amnioinfusion for cord compression (potential, or diagnosed by fetal heart rate monitor)",-3.16494365053251,negative,negative,negative,negative.,negative,"negative.
+
+a suspicious",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9888432612219276,"negative
+",neg,neg,negative.
+27,CD000014,Choudhary 2010,STD-Choudhary-2010 0.043 1.015 146 146,-3.30004360297731,1.0288366701739,292,Pregnancy & Childbirth,efficacy,DICH,1,1,no,2010.0,Meconium aspiration syndrome,Amnioinfusion for meconium-stained liquor in labour,-3.20754858243876,negative,negative,negative,negative.,negative,"negative.
+
+mecon",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9983516126852068,"negative
+",neg,neg,negative.
+28,CD000015,Fraser 1993,STD-Fraser-1993 0.335 0.331 462 463,-1.21291884403288,0.387434539910941,925,Pregnancy & Childbirth,efficacy,DICH,1,1,no,1991.0,Cessation of contractions,Amniotomy to shorten spontaneous labour,-3.13064200293473,negative,negative,negative,negative.,negative,"positive.
+
+cess",neg,negative,neg,neg,neg,neg,pos,neg,neg,"negative
+",negative,0.9974882517317576,"negative
+",neg,neg,positive
+29,CD000015,Johnson 1997,STD-Johnson-1997 1.217 0.305 529 411,0.199036263063436,0.30953251608831,940,Pregnancy & Childbirth,efficacy,DICH,1,3,no,1997.0,Use of oxytocin,Amniotomy to shorten spontaneous labour in multiparae,0.643022147006522,neutral,positive,negative,negative.,"neutral
+
+","positive.
+
+the use",neg,negative,pos,neg,neg,neu,pos,neg,neu,"neutral
+",neutral,0.4913291545124447,"negative
+",neu,neg,positive.
+30,CD000016,Brazil 1983-84,STD-Brazil-1983_x002d_84 0.935 0.496 36 30,-0.0682082500265335,0.500032319576001,66,Infectious Diseases,efficacy,DICH,1,1,no,1983.0,Parasitological conversion,Amodiaquine vs chloroquine in symptomatic participants,-0.136407682776126,positive,neutral,positive,positive.,"negative, because paras","positive.
+
+parasito",pos,negative,neu,pos,pos,neg,pos,neg,pos,"positive
+",positive,0.9980932772098972,"positive
+",pos,pos,positive
+31,CD000016,Cameroon-Centre 1994,STD-Cameroon_x002d_Centre-1994 0.896 0.555 54 52,-0.111552485905748,0.558407105536944,106,Infectious Diseases,efficacy,DICH,1,2,no,1994.0,Parasitological conversion on day 7,Amodiaquine vs chloroquine in asymptomatic participants,-0.199769101789066,positive,negative,negative,negative.,"negative, because parasit","positive.
+
+parasito",pos,negative,neg,neg,neg,neg,pos,neg,pos,"positive
+",positive,0.9929852947092918,"positive
+",pos,pos,positive
+32,CD000016,Cameroon-Hévécam2001,STD-Cameroon_x002d_H_x00e9_v_x00e9_cam2001 0.129 1.164 61 62,-2.01204995155986,1.52276337715625,123,Infectious Diseases,efficacy,DICH,1,3,no,2001.0,Parasitological conversion,Amodiaquine vs sulphadoxine-pyrimethamine in symptomatic participants,-1.32131490797825,positive,neutral,negative,positive,"negative, because parasit","positive.
+
+parasito",pos,negative,neu,neg,pos,neg,pos,neg,pos,"positive
+",positive,0.9977707953753824,"positive
+",pos,pos,positive
+33,CD000018,Amoroso 1998,STD-Amoroso-1998 0.332 0.663 389 388,-1.11691345305051,0.670577095080808,777,Emergency & Trauma,efficacy,DICH,1,1,no,1998.0,Ankle sprain by intervention type,Any intervention v no intervention/control,-1.66560036309609,negative,negative,negative,negative.,"negative, because an an","negative.
+
+an ankle",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9997387536307772,"negative
+",neg,neg,negative.
+34,CD000018,Holme 1999,STD-Holme-1999 0.238 0.728 29 38,-1.70474809223843,0.815464999238573,67,Emergency & Trauma,efficacy,DICH,1,13,no,1999.0,Re-injury (recurrent ankle sprain),Rehabilitation: supervised programme (emphasis on balance training) v control,-2.09052270033687,negative,negative,negative,negative.,negative,"negative.
+
+re-",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9923635277517034,"negative
+",neg,neg,negative.
+35,CD000018,Simon 1969,STD-Simon-1969 1.027 0.688 73 75,0.0285733724440557,0.727033190896703,148,Emergency & Trauma,efficacy,DICH,1,9,no,1969.0,Ankle injury,Adhesive tape v cloth wrap,0.0393013314960409,negative,negative,negative,negative.,"negative, as ankle","negative.
+
+ankle",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9994115904808186,"negative
+",neg,neg,negative.
+36,CD000018,Wester 1996,STD-Wester-1996 0.462 0.4 24 24,-1.26566637333128,0.624543345216639,48,Emergency & Trauma,efficacy,DICH,1,14,no,1996.0,Recurrent ankle sprain,Rehabilitation: wobble board (ankle disk) exercises v control,-2.02654688905899,negative,negative,negative,negative.,negative,"negative.
+
+a recurrent",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.99791703169569,"negative
+",neg,neg,negative.
+37,CD000019,ACTOBAT 1995,STD-ACTOBAT-1995 1.229 0.179 699 698,0.224813869668154,0.194880886688445,1397,Pregnancy & Childbirth,efficacy,DICH,1,1,yes,1995.0,Death prior to hospital discharge,TRH + steroids versus steroids alone (intention-to-treat),1.15359629919769,negative,negative,negative,negative.,negative,"negative.
+
+death prior",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9715637890010614,"negative
+",neg,neg,negative.
+38,CD000019,Ballard 1992b,STD-Ballard-1992b 0.761 0.481 91 89,-0.300104592450338,0.527610666943927,180,Pregnancy & Childbirth,efficacy,DICH,1,3,yes,1992.0,Death prior to hospital discharge,TRH + steroids versus steroids alone (timing of delivery subgroups),-0.568799327330947,negative,negative,negative,negative.,negative,"negative.
+
+death prior",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9954612189403396,"negative
+",neg,neg,negative.
+39,CD000019,Campos 1993,STD-Campos-1993 0.747 0.56 66 69,-0.320211715749433,0.612682313877395,135,Pregnancy & Childbirth,efficacy,DICH,1,4,yes,1993.0,Death prior to hospital discharge,TRH + steroids versus steroids alone (optimally treated variously defined),-0.522639071663347,negative,negative,negative,negative.,negative,"negative.
+
+death prior",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9946976278659112,"negative
+",neg,neg,negative.
+40,CD000020,Huchet 1987,STD-Huchet-1987 0.172 1.079 927 955,-1.76722490526431,1.08111068862228,1882,Pregnancy & Childbirth,efficacy,DICH,1,1,no,1987.0,Incidence of Rhesus D alloimmunisation during pregnancy,Anti-D administration in pregnancy,-1.63463826957106,negative,negative,negative,negative.,"negative, because rhes","negative.
+
+rhesus",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9908749403739174,"negative
+",neg,neg,negative.
+41,CD000021,International 1966,STD-International-1966 0.045 0.212 3389 1476,-3.73425004005463,0.4213003511728,4865,Pregnancy & Childbirth,efficacy,DICH,1,1,no,1969.0,Immunisation after 6 months,"Anti-D prophylaxis postpartum (overall, irrespective of ABO status)",-8.86362907047043,positive,positive,negative,negative.,positive,"positive.
+
+immunisation",pos,negative,pos,neg,neg,pos,pos,neg,pos,"negative
+",negative,0.9896730964395466,"negative
+",neg,neg,positive
+42,CD000021,MRC 1974,STD-MRC-1974 3.355 0.634 898 902,1.39746766171802,0.791981506486565,1800,Pregnancy & Childbirth,efficacy,DICH,1,7,no,1974.0,Immunisation after 6 months,"Dosage comparison, up to 50 ug versus more than 50 ug anti-D",1.76452057310977,neutral,neutral,positive,positive,positive,"positive.
+
+the outcome",pos,negative,neu,pos,pos,pos,pos,neg,neu,"negative
+",negative,0.975009897259916,"negative
+",neg,neg,positive.
+43,CD000022,Abele-Horn 1997,STD-Abele_x002d_Horn-1997 1.17 0.593 58 30,0.157185583522413,0.593452345731122,88,Lungs,efficacy,DICH,1,1,no,1997.0,Overall mortality,Topical plus systemic versus no prophylaxis,0.264866395175779,negative,negative,negative,negative.,"negative, as a","negative.
+
+overall mortality",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9950172905871582,"negative
+",neg,neg,negative.
+44,CD000022,Bergmans 2001,STD-Bergmans-2001 0.714 0.283 87 139,-0.337364695404233,0.283419028162946,226,Lungs,efficacy,DICH,1,2,no,2001.0,Overall mortality,Topical versus control,-1.19033890416938,negative,negative,negative,negative.,negative,"negative.
+
+overall mortality",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9989013211899984,"negative
+",neg,neg,negative.
+45,CD000023,Brink 1951,STD-Brink-1951 0.659 0.087 277 198,-0.90917743967985,0.192294479578258,475,Lungs,efficacy,DICH,1,1,no,1951.0,Symptom of sore throat on day 3,Antibiotics versus placebo for the treatment of sore throats: symptom of sore throat,-4.72804753248178,negative,neutral,negative,negative.,"negative, because it","negative.
+
+a reduction",neg,negative,neu,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9993007651786864,"negative
+",neg,neg,negative.
+46,CD000023,Catanzaro 1954,STD-Catanzaro-1954 0.733 0.34 650 220,-0.325422400434628,0.358057437019716,870,Lungs,efficacy,DICH,1,4,no,1954.0,Incidence of acute rheumatic fever within 2 months. Rheumatic fever defined by clinical diagnosis,Antibiotics versus placebo for the treatment of sore throat: incidence of complications,-0.908855303057728,negative,negative,negative,negative.,"negative
+
+the inc","negative.
+
+acute rheumatic",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.9961157425196934,"negative
+",neg,neg,negative.
+47,CD000023,Nelson 1984,STD-Nelson-1984 1.271 0.263 17 18,0.65232518603969,0.712974987873581,35,Lungs,efficacy,DICH,1,2,no,1984.0,Symptom of fever on day 3,Antibiotics versus control for the treatment of sore throat: symptom of fever,0.914934180209075,negative,neutral,negative,negative.,"negative, because the presence","positive.
+
+a reduction",neg,negative,neu,neg,neg,neg,pos,neg,neg,"negative
+",negative,0.9989992311035458,"negative
+",neg,neg,negative.
+48,CD000024,ARGIS-1 2004,STD-ARGIS_x002d_1-2004 1.277 0.366 83 46,0.246674048724404,0.368612074642891,129,Neurology,efficacy,DICH,1,1,no,2004.0,Dead or dependent at end of follow up (if > 1 month),Anticoagulant versus control in acute presumed ischaemic stroke,0.669196875776195,negative,negative,negative,negative.,negative,"negative.
+
+the outcome",neg,negative,neg,neg,neg,neg,neg,neg,neg,"negative
+",negative,0.99253902588788,"negative
+",neg,neg,negative.
+49,CD000025,Denmark 2000,STD-Denmark-2000 0.934 0.216 14 17,-0.262364264467491,0.822753351207442,31,Pregnancy & Childbirth,efficacy,DICH,1,9,no,2000.0,Other antihypertensive therapy,Magnesium chloride versus methyl dopa,-0.318885683154562,neutral,neutral,neutral,negative.,neutral,neutral,neu,negative,neu,neu,neg,neu,neu,neg,neu,"negative
+",negative,0.8855280758948962,"negative
+",neg,neg,positive
