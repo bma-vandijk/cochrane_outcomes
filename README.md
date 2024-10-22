@@ -40,14 +40,50 @@ microsoft/Phi-3.5-mini-instruct|.93|
 |meta-llama/Llama-3.2-1B-Instruct|.85|
 |Majority-vote-baseline|.75|
 
-On the level of *RCTs* llama3-8b-8192 and gemini-1.5-flash-002 (both 92% accurate) are highly competitive. On the level of *reviews* gemini-1.5-flash-002 is the winner (96% accurate). Results can be seen in more detail in LLM_preds_evals.ipynb under 'Evaluation'. Gemini-1.5-flash-002 is competitive: it has a free version (but a slow one with 15 rows per minute as limit), but the paid version is much faster and very cheap (250 rows in 2 minutes for less than 2 eurocents). A notable mention is for microsoft-phi3.5 as good performing small, open, locally runnable, free, and super-fast model.   
+On the level of *RCTs* llama3-8b-8192 and gemini-1.5-flash-002 (both 92% accurate) are highly competitive. On the level of *reviews* gemini-1.5-flash-002 is the winner (96% accurate). Detailed results visible in LLM_preds_evals.ipynb under 'Evaluation'. Gemini-1.5-flash-002 is competitive: it has a free slow version, but the paid version is blazingly fast and cheap (250 rows in 2 minutes for less than 2 eurocents). A notable mention is for microsoft-phi3.5 as good performing small, open, locally runnable, free, and super-fast model. I think it would be extremely interesting to verify the output of local, small and free models with medical experts, next to the larger best ones like gemini-1.5-flash-002.  
 
 ## Confidence
-Confidence in the form of token probabilities is only available for gemini-1.5-flash-002, microsoft-phi.3.5, gemma2-2b, llama3.2-3b, llama3.2-1b.
+Confidence in the form of output token probabilities at RCT level is only available for gemini-1.5-flash-002, microsoft-phi.3.5, gemma2-2b, llama3.2-3b, llama3.2-1b.
 
 ![alt text](gemini_flash_probs_dist.png)
 
-The model is only unsure about roughly 10% of rows (with probabilities below .95), which is to be expected given its good performance. When looking at these rows we see that the specialties 'pregnancy & childbirth' and 'psychiatry & mental health' are overrepresented. When looking at overrepresented outcome measures and outcomes (visible in LLM_preds_evals.ipynb), we see no measures or outcomes overrepresented in particular (or at least not ones that I as lay person can easily group).
+Overall better models are more sure of their predictions. 'Neutral' is the most difficult label and indeed a problematic one in that it has no clear interpretation for either humans nor LLMs (we could consider dropping it). Interestingly, models that do worse are also less confident, although such models could of course make wrong predictions with high confidence. This means that beyond accuracy for a particular task (which is well above the baseline), confidence can give an idea of how fit a model is for a particular task, which does not get much attention in the literature.        
 
+Which specialties are difficult for a selection of models? Pregnancy & childbirth is for all the most difficult, and to a lesser extent psychiatry and mental health. 
 
+**gemini-1.5-flash-002**
+| Specialty  | Confidence <.95, 24 rows total  |
+|---|---|
+| Gynaecology & Urology  | 1  |
+| Heart & hypertension    |1   |
+| Hepato-Biliary  | 2  |
+| Infectious Diseases  | 2  |
+| Neonatal  | 1  |
+| Neurology  | 1  |
+| Pregnancy & Childbirth  | 8  |
+| Psychiatry & Mental health  | 8  |
 
+**microsoft/Phi-3.5-mini-instruct**
+| Specialty  | Confidence <.7, 38 rows total  |
+|---|---|
+| Emergency & Trauma  | 2  |
+| Gynaecology & Urology    | 7  |
+| Infectious Diseases  | 7  |
+| Lungs  | 1  |
+| Pregnancy & Childbirth  | 20  |
+| Psychiatry & Mental health  | 1  |
+
+**gema-2-2b**
+| Specialty  | Confidence <.7, 125 rows total  |
+|---|---|
+| Emergency & Trauma  | 6  |
+| Gynaecology & Urology    | 1  |
+| Heart & hypertension | 2 |
+| Hepo-biliary | 2 |
+| Infectious Diseases  | 13  |
+| Lungs  | 6  |
+| Neonatal | 9 |
+| Neurology| 6 |
+| Oncology | 1 | 
+| Pregnancy & Childbirth  | 70  |
+| Psychiatry & Mental health  | 9  |
