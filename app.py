@@ -4,7 +4,7 @@ import streamlit as st
 from streamlit import session_state as ss
 
 
-@st.cache_resource
+#@st.cache_resource 2
 def prepare_database(path):
     
     df = pd.read_csv(path, index_col=0)
@@ -15,7 +15,7 @@ def prepare_database(path):
 
     #-- add q col
     #question = f"In a medical study on '{df.comparison_name}', the outcome is '{df.outcome_name}'. Is this considered a positive or negative health outcome? Please only respond with 'positive', 'negative' or 'neutral'."
-    df['question'] = df.apply(lambda row: f"In a medical study on '{row.comparison_name}', the outcome is '{row.outcome_name}'. Is this considered a positive or negative health outcome? Please only respond with 'positive', 'negative' or 'neutral'.", axis=1)  
+    df['question'] = df.apply(lambda row: f"In a medical study on '{row.comparison_name}', the outcome is '{row.outcome_name}'. Is this considered a positive or negative health outcome?", axis=1)  
     df['question_id'] = ['Q' + str(i) for i in range(len(df))]
 
     #-- Connect to SQLite database (or create it)
@@ -27,15 +27,9 @@ def prepare_database(path):
     # Write the DataFrame to SQL (replace if it already exists)
     df.to_sql('rct_df', conn, if_exists='replace', index=False)
 
-    # #-- check if written
-    # res = cur.execute("SELECT name FROM sqlite_master")
-    # res.fetchone()
-
     #-- check if column is created
     cur.execute("ALTER TABLE rct_df ADD COLUMN status TEXT DEFAULT available")
     cur.execute("ALTER TABLE rct_df ADD COLUMN user_id TEXT DEFAULT empty")
-    # res = cur.execute("SELECT status FROM rct_df")
-    # res.fetchall()
 
     return conn, cur
 
@@ -43,11 +37,11 @@ def prepare_database(path):
 def sample_questions(user_id,_conn,_cur):
 
     #-- Select easy rows
-    _cur.execute("""SELECT question,question_id FROM rct_df WHERE "microsoft/Phi-3.5-mini-instruct_probs" < 0.7 AND status = 'available'""")
+    _cur.execute("""SELECT question, question_id FROM rct_df WHERE "microsoft/Phi-3.5-mini-instruct_probs" < 0.7 AND status = 'available'""")
     hard_questions = _cur.fetchall()
 
     #-- Select select hard rows
-    _cur.execute("""SELECT question,question_id FROM rct_df WHERE "microsoft/Phi-3.5-mini-instruct_probs" >= 0.7 AND status = 'available'""")
+    _cur.execute("""SELECT question, question_id FROM rct_df WHERE "microsoft/Phi-3.5-mini-instruct_probs" >= 0.7 AND status = 'available'""")
     easy_questions = _cur.fetchall()
 
     # Randomly sample 3 easy and 1 hard question
@@ -63,7 +57,6 @@ def sample_questions(user_id,_conn,_cur):
     # Commit the changes
     
     return [q[0] for q in sampled_questions], [q[1] for q in sampled_questions]
-
 
 
 #-- update labels in DB
@@ -115,22 +108,23 @@ def main():
     st.title('RCT Outcomes Labelling App') #-- st markup
     
     #-- fetch user id 
-    user_id = st.text_input("Please enter user ID:", value="",key='user_id_input')
-    st.write(f"You entered ID:{user_id}")
+    user_id = st.text_input("Please enter user ID:", value="",key='user_id')
+    
+    st.write(f"You are user: {user_id}")
 
-    if st.checkbox('Check this box to save ID and continue',key=f"user_id"):
+    if st.checkbox('Check this box to save ID and start labelling!',key=f"user_id_start"):
 
         Qs, Qs_ids = sample_questions(user_id, conn, cur) #-- sample qs
 
         if ss.a_index > len(Qs) - 1:
-            Qs = Qs[0]  # avoid index overflow
+            Qs = 'The round is complete.'  # avoid index overflow
             ss.done = True
         else:
             Qs = Qs[ss.a_index]
             Qs_ids = Qs_ids[ss.a_index]
 
         with st.form('form_k'):
-            st.subheader(f"Question: {Qs}?")
+            st.subheader(f"{Qs}")
             label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True, key='ans')
             st.form_submit_button('Submit', on_click=update_cb(label, Qs_ids), disabled=ss.done)
 
@@ -141,11 +135,11 @@ def main():
         
     
         if ss.a_index > len(Qs_ids):
-            if st.checkbox('Thank you! This round has ended. Up for another round?',key="go_on"):
-                st.button(':+1: Next round', on_click=restart_cb)
-                ss.a_index = 0
-                ss.labels = []
-                ss.q_index = []
+            #if st.checkbox('Up for another round?',key="go_on"):
+            st.button(':+1: I want to do another round', on_click=restart_cb)
+            ss.a_index = 0
+            ss.labels = []
+            ss.q_index = []
 
     
         #         # Report after exhausting the number of animals
