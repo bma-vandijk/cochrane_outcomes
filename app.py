@@ -125,7 +125,7 @@ def main():
 
         with st.form('form_k'):
             st.subheader(f"{Qs}")
-            label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True, key='ans')
+            label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True, key='ans',index=None)
             st.form_submit_button('Submit', on_click=update_cb(label, Qs_ids), disabled=ss.done)
 
 
@@ -214,4 +214,3 @@ if __name__ == "__main__":
     # #-- fake an update of returned labels
     # for i in range(len(list(qs_labels_ids))):
     #     update_label(cursor=cur, label=qs_labels_ids[i][1], labeling_done='done', question_id=qs_labels_ids[i][2], user='testuser01')
-
