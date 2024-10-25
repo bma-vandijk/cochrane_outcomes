@@ -1,9 +1,15 @@
 import sqlite3, random
 import pandas as pd
 import streamlit as st
+import os
 from streamlit import session_state as ss
 
+#-- dir
+main_dir = os.getcwd()
+print(main_dir)
+data_dir = os.path.join(main_dir, 'source','rct_df.csv')
 
+print('update')
 @st.cache_resource
 def prepare_database(path):
     
@@ -18,7 +24,7 @@ def prepare_database(path):
     df['question_id'] = ['Q' + str(i) for i in range(len(df))]
 
     #-- Connect to SQLite database (or create it)
-    conn = sqlite3.connect('cochrane_labeling.db')
+    conn = sqlite3.connect(os.path.join(main_dir,'cochrane_labeling.db'))
 
     #-- define cursor
     cur = conn.cursor()
@@ -79,7 +85,7 @@ def update_label(cur, label, labeling_done, question_id, user, conn):
 
 def main():
     
-    conn, cur = prepare_database('source/rct_df.csv') #-- set up db hooks
+    conn, cur = prepare_database(data_dir) #-- set up db hooks
 
     if 'index' not in ss:
         ss.index = 0
@@ -105,9 +111,9 @@ def main():
             label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True, key='ans',index=None)            
             st.form_submit_button('Submit', on_click=update_label(cur,label,'done',ss.Qs_ids[ss.index],user_id,conn))
 
-    #-- clunky writeout
-    table = pd.read_sql_query("SELECT * from rct_df", conn)
-    table.to_csv('rct_df_dbtest.csv', index_label='index')
+    # #-- clunky writeout
+    # table = pd.read_sql_query("SELECT * from rct_df", conn)
+    # table.to_csv('rct_df_dbtest.csv', index_label='index')
 
             
 if __name__ == "__main__":
