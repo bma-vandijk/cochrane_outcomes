@@ -24,7 +24,7 @@ def prepare_database(path):
     df['question_id'] = ['Q' + str(i) for i in range(len(df))]
 
     #-- Connect to SQLite database (or create it)
-    conn = sqlite3.connect(os.path.join(main_dir,'cochrane_labeling.db'))
+    conn = sqlite3.connect(os.path.join(main_dir,'cochrane_labeling.db'), check_same_thread=False)
 
     #-- define cursor
     cur = conn.cursor()
