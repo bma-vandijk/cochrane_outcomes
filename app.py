@@ -67,12 +67,12 @@ def sample_questions(_conn,_cur):
 
 #-- update labels in DB
 def update_label(cur, label, labeling_done, question_id, user, conn):
-    
+    print('update_label')
     # Update the label and mark the question as labeled
-    cur.execute("UPDATE rct_df SET label = ?, status = ? WHERE question_id = ? AND user_id = ?", (label, labeling_done, question_id, user))
+    #cur.execute("UPDATE rct_df SET label = ?, status = ? WHERE question_id = ? AND user_id = ?", (label, labeling_done, question_id, user))
     
     # Commit the changes
-    conn.commit()
+    #conn.commit()
         
     if ss.index == len(ss.Qs) - 1:
         del ss['Qs']
