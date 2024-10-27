@@ -4,6 +4,8 @@ import streamlit as st
 import os
 from streamlit import session_state as ss
 
+# Tom > source > human game > server.py > r 258
+
 #-- dir
 main_dir = os.getcwd()
 print(main_dir)
@@ -107,6 +109,14 @@ def main():
         # st.write(ss.Qs[ss.index], ss.Qs_ids[ss.index])
         
         with st.form('form_k'):
+
+            st.markdown("""<style>
+            div[role=radiogroup] label:first-of-type {
+            visibility: hidden;
+            height: 0px;
+            }</style>""",
+        unsafe_allow_html=True,)
+            
             st.subheader(f"{ss.Qs[ss.index]}")
             label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True, key='ans',index=None)            
             st.form_submit_button('Submit', on_click=update_label(cur,label,'done',ss.Qs_ids[ss.index],user_id,conn))
