@@ -75,7 +75,8 @@ def update_label(cur, label, labeling_done, question_id, user, conn):
     
     # Commit the changes
     #conn.commit()
-        
+    del ss['ans']
+
     if ss.index == len(ss.Qs) - 1:
         del ss['Qs']
         del ss['index']
@@ -91,6 +92,9 @@ def main():
 
     if 'index' not in ss:
         ss.index = 0
+
+    if 'ans' not in ss:
+        ss.ans = None
 
     if 'Qs' or 'QS_ids' not in ss:
         ss.Qs, ss.Qs_ids = sample_questions(conn, cur) #-- sample qs
@@ -110,15 +114,15 @@ def main():
         
         with st.form('form_k'):
 
-            st.markdown("""<style>
-            div[role=radiogroup] label:first-of-type {
-            visibility: hidden;
-            height: 0px;
-            }</style>""",
-        unsafe_allow_html=True,)
+        #     st.markdown("""<style>
+        #     div[role=radiogroup] label:first-of-type {
+        #     visibility: hidden;
+        #     height: 0px;
+        #     }</style>""",
+        # unsafe_allow_html=True,)
             
             st.subheader(f"{ss.Qs[ss.index]}")
-            label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True, key='ans',index=None)            
+            label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True,key='ans',index=None)            
             st.form_submit_button('Submit', on_click=update_label(cur,label,'done',ss.Qs_ids[ss.index],user_id,conn))
 
     # #-- clunky writeout
