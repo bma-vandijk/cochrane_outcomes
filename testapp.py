@@ -66,19 +66,31 @@ if 'disable' not in ss:
     ss['disable'] = False
 if 'user_id_start' not in ss:
     ss['user_id_start'] = False
+if 'checkbox_closed' not in ss:
+    ss['checkbox_closed'] = False
 
 #-- add element for controlling flow + id
-col1, col2 = st.sidebar.columns(2)
-if ss['disable']:
-    with col1:
-        st.button(label="Next example", on_click=next)
-with col2:
-    user_id = st.text_input("Enter username and press enter:",value=None,key='user_id')
+# col1, col2 = st.sidebar.columns(2)
+# if ss['disable']:
+#     with col1:
+#         st.button(label="Next example", on_click=next)
+# with col2:
+#     user_id = st.text_input("Enter username and press enter:",value=None,key='user_id')
 
-if st.checkbox('Check this box to save ID and start labelling!',key=f"user_id_start"):
-    st.subheader(ss['Q'])
-    st.write(ss['Q_id'])
-    with st.form('form_k'):
-        label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True,index=None,key='label', disabled=ss['disable']) #--disabled=st.session_state['disable']
-        st.write(ss.label)
-        st.form_submit_button('Submit', on_click=submit(label,'done',user_id,ss['Q_id']))
+with st.sidebar:
+    user_id = st.text_input("Enter username and press enter:",value=None,key='user_id',disabled=ss['user_id_start'])
+    if ss['disable']:
+        st.button(label="Next example", on_click=next)
+
+if st.checkbox('Check this box to save ID and start labelling!',key=f"user_id_start",disabled=ss['checkbox_closed']):
+    if ss['user_id_start'] and user_id:
+        ss['checkbox_closed'] = True
+        st.subheader(ss['Q'])
+        #st.write(ss['Q_id'])
+        with st.form('form_k'):
+            label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True,index=None,key='label', disabled=ss['disable']) #--disabled=st.session_state['disable']
+            #st.write(ss.label)
+            st.form_submit_button('Submit', on_click=submit(label,'done',user_id,ss['Q_id']))
+    else:
+        st.write('You did not submit a user ID.')
+
