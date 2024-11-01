@@ -35,7 +35,7 @@ def row_sampler(_easy,_hard):
         sampled_row = random.sample(_hard.data, min(1, len(_hard.data)))
                         
     for row in sampled_row: #-- update sampled row: in progress
-        #response = (supabase.table("rct_df").update({"status": "in_progress_3"}).eq("question_id", row['question_id']).execute())
+        response = (supabase.table("rct_df").update({"status": "in_progress_3"}).eq("question_id", row['question_id']).execute())
         pass
 
     Qs, Qs_ids = [row['question'] for row in sampled_row], [row['question_id'] for row in sampled_row]
@@ -44,7 +44,7 @@ def row_sampler(_easy,_hard):
 
 #-- update db with label
 def submit(label,status,user,question_id):
-    #response = (supabase.table("rct_df").update({"label":label, "status":status, "user":user}).eq("question_id", question_id).execute())
+    response = (supabase.table("rct_df").update({"label":label, "status":status, "user":user}).eq("question_id", question_id).execute())
     ss['disable'] = True
     
 #-- fetch next item and empty cache + session state
@@ -82,9 +82,9 @@ if st.checkbox('Check this box to save ID and start labelling!',key=f"user_id_st
         st.subheader(ss['Q'])
         #st.write(ss['Q_id'])
         with st.form('form_k'):
-            label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True,index=None,key='label', disabled=ss['disable']) #--disabled=st.session_state['disable']
+            label = st.radio('Select', ['Positive4', 'Neutral4', 'Negative4'], horizontal=True,index=None,key='label', disabled=ss['disable']) #--disabled=st.session_state['disable']
             #st.write(ss.label)
-            st.form_submit_button('Submit', on_click=submit(label,'done',user_id,ss['Q_id']))
+            st.form_submit_button('Submit', on_click=submit(label,'done4',user_id,ss['Q_id']))
     else:
         st.write('You did not submit a user ID.')
 
