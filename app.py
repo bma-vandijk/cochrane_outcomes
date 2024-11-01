@@ -1,135 +1,89 @@
-import sqlite3, random
-import pandas as pd
 import streamlit as st
+from supabase import create_client, Client
+import random
+import pandas as pd
 import os
 from streamlit import session_state as ss
 
-# Tom > source > human game > server.py > r 258
-
-#-- dir
-main_dir = os.getcwd()
-print(main_dir)
-data_dir = os.path.join(main_dir, 'source','rct_df.csv')
-
-print('update')
+#-- init db connection
 @st.cache_resource
-def prepare_database(path):
+def init_connection():
+    url = st.secrets["SUPABASE_URL"]
+    key = st.secrets["SUPABASE_KEY"]
+    return create_client(url, key)
+
+supabase = init_connection()
+
+#-- fetch db
+@st.cache_resource(ttl=600)
+def run_query():
     
-    df = pd.read_csv(path, index_col=0)
-    df = df[['id','study.name','specialty','outcome_name','comparison_name','microsoft/Phi-3.5-mini-instruct_probs']]
+    #-- split db in easy and hard questions
+    easy = supabase.table("rct_df").select("user,question,question_id,label,status,microsoft_Phi-3_5-mini-instruct_probs").gte('microsoft_Phi-3_5-mini-instruct_probs',.7).eq('status','available').execute()
+    hard = supabase.table("rct_df").select("user,question,question_id,label,status,microsoft_Phi-3_5-mini-instruct_probs").lt('microsoft_Phi-3_5-mini-instruct_probs',.7).eq('status','available').execute()
 
-    #-- add label col
-    df['label'] = pd.Series(dtype='str')
+    return easy,hard
 
-    #-- add q col
-    df['question'] = df.apply(lambda row: f"In a medical study on '{row.comparison_name}', the outcome is '{row.outcome_name}'. Is this considered a positive or negative health outcome?", axis=1)  
-    df['question_id'] = ['Q' + str(i) for i in range(len(df))]
+@st.cache_data
+def row_sampler(_easy,_hard):
 
-    #-- Connect to SQLite database (or create it)
-    conn = sqlite3.connect(os.path.join(main_dir,'cochrane_labeling.db'), check_same_thread=False)
-
-    #-- define cursor
-    cur = conn.cursor()
-
-    # Write the DataFrame to SQL (replace if it already exists)
-    df.to_sql('rct_df', conn, if_exists='replace', index=False)
-
-    #-- check if column is created
-    cur.execute("ALTER TABLE rct_df ADD COLUMN status TEXT DEFAULT available")
-    cur.execute("ALTER TABLE rct_df ADD COLUMN user_id TEXT DEFAULT empty")
-
-    return conn, cur
-
-#@st.cache_data
-@st.cache_data 
-def sample_questions(_conn,_cur):
-
-    #-- Select easy rows
-    _cur.execute("""SELECT question, question_id FROM rct_df WHERE "microsoft/Phi-3.5-mini-instruct_probs" < 0.7 AND status = 'available'""")
-    hard_questions = _cur.fetchall()
-
-    #-- Select select hard rows
-    _cur.execute("""SELECT question, question_id FROM rct_df WHERE "microsoft/Phi-3.5-mini-instruct_probs" >= 0.7 AND status = 'available'""")
-    easy_questions = _cur.fetchall()
-
-    # Randomly sample 3 easy and 1 hard question
-    sampled_questions = random.sample(easy_questions, min(3, len(easy_questions))) + \
-                        random.sample(hard_questions, min(1, len(hard_questions)))
-
-    # Mark them as 'in-progress' for the user
-    for question in sampled_questions:
-        #print(question)
-        _cur.execute(f"UPDATE rct_df SET status = ? WHERE question_id = ?", ('in-progress',question[1],))
-        _conn.commit()
+    rint = random.randint(1, 10) #-- easy or hard Q? Sample random number and specify proportion
     
-    # Commit the changes
-    print('sample_questions: executed')
-    return [q[0] for q in sampled_questions], [q[1] for q in sampled_questions]
-
-
-#-- update labels in DB
-def update_label(cur, label, labeling_done, question_id, user, conn):
-    print('update_label')
-    # Update the label and mark the question as labeled
-    #cur.execute("UPDATE rct_df SET label = ?, status = ? WHERE question_id = ? AND user_id = ?", (label, labeling_done, question_id, user))
-    
-    # Commit the changes
-    #conn.commit()
-    del ss['ans']
-
-    if ss.index == len(ss.Qs) - 1:
-        del ss['Qs']
-        del ss['index']
-        del ss['Qs_ids']
-        st.cache_data.clear()
-
+    if rint < 7: #-- 60% easy, 40% hard 
+        sampled_row = random.sample(_easy.data, min(1, len(_easy.data)))
     else:
-        ss.index += 1
+        sampled_row = random.sample(_hard.data, min(1, len(_hard.data)))
+                        
+    for row in sampled_row: #-- update sampled row: in progress
+        response = (supabase.table("rct_df").update({"status": "in_progress_3"}).eq("question_id", row['question_id']).execute())
+        pass
 
-def main():
+    Qs, Qs_ids = [row['question'] for row in sampled_row], [row['question_id'] for row in sampled_row]
+
+    return Qs, Qs_ids
+
+#-- update db with label
+def submit(label,status,user,question_id):
+    response = (supabase.table("rct_df").update({"label":label, "status":status, "user":user}).eq("question_id", question_id).execute())
+    ss['disable'] = True
     
-    conn, cur = prepare_database(data_dir) #-- set up db hooks
+#-- fetch next item and empty cache + session state
+def next():
+    for key in ss.keys():
+        del ss[key]
+    st.cache_data.clear()
 
-    if 'index' not in ss:
-        ss.index = 0
+#-- get first items
+easy, hard = run_query()
+Q, Q_id = row_sampler(easy,hard)
 
-    if 'ans' not in ss:
-        ss.ans = None
+#-- init session state
+if 'Q' not in ss:
+    ss['Q'] = Q[0]
+if 'Qs_id' not in ss:
+    ss['Q_id'] = Q_id[0]
+if 'disable' not in ss:
+    ss['disable'] = False
+if 'user_id_start' not in ss:
+    ss['user_id_start'] = False
+if 'checkbox_closed' not in ss:
+    ss['checkbox_closed'] = False
 
-    if 'Qs' or 'QS_ids' not in ss:
-        ss.Qs, ss.Qs_ids = sample_questions(conn, cur) #-- sample qs
+#-- add sidebar element for controlling flow + id
+with st.sidebar:
+    user_id = st.text_input("Enter username and press enter:",value=None,key='user_id',disabled=ss['user_id_start'])
+    if ss['disable']:
+        st.button(label="Next example", on_click=next)
 
-    #st.write(st.session_state)
-
-    #-- standard stuff
-    st.title('RCT Outcomes Labelling App') #-- st markup
-    user_id = st.text_input("Please enter user ID:", value="",key='user_id')
-    st.write(f"You are user: {user_id}")
-    
-    #-- actual labelling
-    if st.checkbox('Check this box to save ID and start labelling!',key=f"user_id_start"):
-
-        #-- mock Q and index    
-        # st.write(ss.Qs[ss.index], ss.Qs_ids[ss.index])
-        
+#-- here the actual labelling happens
+if st.checkbox('Check this box to save ID and start labelling!',key=f"user_id_start",disabled=ss['checkbox_closed']):
+    if ss['user_id_start'] and user_id: #-- stop if no user id present
+        ss['checkbox_closed'] = True #-- prevent getting disabled answer box
+        st.subheader(ss['Q'])
+        #st.write(ss['Q_id'])
         with st.form('form_k'):
-
-        #     st.markdown("""<style>
-        #     div[role=radiogroup] label:first-of-type {
-        #     visibility: hidden;
-        #     height: 0px;
-        #     }</style>""",
-        # unsafe_allow_html=True,)
-            
-            st.subheader(f"{ss.Qs[ss.index]}")
-            label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True,key='ans',index=None)            
-            st.form_submit_button('Submit', on_click=update_label(cur,label,'done',ss.Qs_ids[ss.index],user_id,conn))
-
-    # #-- clunky writeout
-    # table = pd.read_sql_query("SELECT * from rct_df", conn)
-    # table.to_csv('rct_df_dbtest.csv', index_label='index')
-
-            
-if __name__ == "__main__":
-
-    main()
+            label = st.radio('Select', ['Positive4', 'Neutral4', 'Negative4'], horizontal=True,index=None,key='label', disabled=ss['disable']) #--disabled=st.session_state['disable']
+            #st.write(ss.label)
+            st.form_submit_button('Submit', on_click=submit(label,'done4',user_id,ss['Q_id']))
+    else:
+        st.write('You did not submit a user ID.')
