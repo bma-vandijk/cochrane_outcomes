@@ -69,22 +69,16 @@ if 'user_id_start' not in ss:
 if 'checkbox_closed' not in ss:
     ss['checkbox_closed'] = False
 
-#-- add element for controlling flow + id
-# col1, col2 = st.sidebar.columns(2)
-# if ss['disable']:
-#     with col1:
-#         st.button(label="Next example", on_click=next)
-# with col2:
-#     user_id = st.text_input("Enter username and press enter:",value=None,key='user_id')
-
+#-- add sidebar element for controlling flow + id
 with st.sidebar:
     user_id = st.text_input("Enter username and press enter:",value=None,key='user_id',disabled=ss['user_id_start'])
     if ss['disable']:
         st.button(label="Next example", on_click=next)
 
+#-- here the actual labelling happens
 if st.checkbox('Check this box to save ID and start labelling!',key=f"user_id_start",disabled=ss['checkbox_closed']):
-    if ss['user_id_start'] and user_id:
-        ss['checkbox_closed'] = True
+    if ss['user_id_start'] and user_id: #-- stop if no user id present
+        ss['checkbox_closed'] = True #-- prevent getting disabled answer box
         st.subheader(ss['Q'])
         #st.write(ss['Q_id'])
         with st.form('form_k'):
