@@ -90,9 +90,7 @@ Which specialties are difficult for a selection of models? Pregnancy & childbirt
 
 
 # Data labelling
-I have created a local mock sampler with streamlit (see for yourself by running app.py, after installing requirements from requirements.txt) that samples 4 rows from source/rct_df.csv (the testdata) a time, one of which has a probability lower than .7 (microsoft-Phi LLM). The idea is that the user can label row for row until the labelling lust is gone ;), and also to take into account that we'd also like the harder cases (from LLM perspective) to be labelled.
+I have a sampler that takes into account that difficult rows, although quite infrequent (only 1 in 6/7 or so), should occur at least 40% of the time. The link below gives an idea. Design is not perfect and database connections currently under construction. 
 
-The picture below gives an idea but I still need to make it available remotely (online hosting) and make proper database connections, and it will need a bit of testing. Things like question phrasing and so on can be modified. 
-
-![alt text](mock_sambeler.png)
+https://cochrane-labeller.streamlit.app/
 
