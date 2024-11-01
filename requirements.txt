@@ -83,7 +83,7 @@ parso==0.8.4
 pexpect==4.9.0
 pillow==10.3.0
 platformdirs==4.2.2
-postgrest==0.17.2
+#postgrest==0.17.2
 prompt-toolkit==3.0.43
 propcache==0.2.0
 proto-plus==1.23.0
@@ -140,7 +140,7 @@ typing_extensions==4.12.2
 tzdata==2024.1
 uritemplate==4.1.1
 urllib3==2.2.1
-watchdog==5.0.3
+#watchdog==5.0.3
 wcwidth==0.2.13
 websockets==13.1
 widgetsnbextension==4.0.13
