@@ -16,11 +16,14 @@ microsoft/Phi-3.5-mini-instruct|.91|
 |gemini-1.5-pro-002|.91|
 |llama-3.1-70b-versatile|.90|
 |mixtral-8x7b-32768|.90|
+|Qwen/Qwen2.5-3B-Instruct|.90|
 |llama3-70b-8192|.89|
 |gemma-7b-it|.88|
 |meta-llama/Llama-3.2-3B-Instruct|.87
 |google/gemma-2-2b-it|.86|
+|ibm-granite/granite-3.0-2b-instruct|.84|
 |meta-llama/Llama-3.2-1B-Instruct|.80|
+|ibm-granite/granite-3.0-3b-a800m-instruct|.64|
 |Majority-vote-baseline|.67|
 
 Results on *review* level (majority vote on the most frequent effect direction, with 'id' column as review indicator variable):
@@ -36,8 +39,11 @@ microsoft/Phi-3.5-mini-instruct|.93|
 |llama3-70b-8192|.94|
 |gemma-7b-it|.92|
 |meta-llama/Llama-3.2-3B-Instruct|.90
+|ibm-granite/granite-3.0-2b-instruct|.90|
 |google/gemma-2-2b-it|.91|
+|Qwen/Qwen2.5-3B-Instruct|.86|
 |meta-llama/Llama-3.2-1B-Instruct|.85|
+|ibm-granite/granite-3.0-3b-a800m-instruct|.70|
 |Majority-vote-baseline|.75|
 
 On the level of *RCTs* llama3-8b-8192 and gemini-1.5-flash-002 (both 92% accurate) are highly competitive. On the level of *reviews* gemini-1.5-flash-002 is the winner (96% accurate). Detailed results visible in LLM_preds_evals.ipynb under 'Evaluation'. Gemini-1.5-flash-002 is competitive: it has a free slow version, but the paid version is blazingly fast and cheap (250 rows in 2 minutes for less than 2 eurocents). A notable mention is for microsoft-phi3.5 as good performing small, open, locally runnable, free, and super-fast model. I think it would be extremely interesting to verify the output of local, small and free models with medical experts, next to the larger best ones like gemini-1.5-flash-002.  
