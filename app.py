@@ -19,8 +19,8 @@ supabase = init_connection()
 def run_query():
     
     #-- split db in easy and hard questions
-    easy = supabase.table("rct_df").select("user,question,question_id,label,status,microsoft_Phi-3_5-mini-instruct_probs").gte('microsoft_Phi-3_5-mini-instruct_probs',.7).eq('status','available').execute()
-    hard = supabase.table("rct_df").select("user,question,question_id,label,status,microsoft_Phi-3_5-mini-instruct_probs").lt('microsoft_Phi-3_5-mini-instruct_probs',.7).eq('status','available').execute()
+    easy = supabase.table("rct_df_updated").select("user,question,question_id,label,status,microsoft_Phi-3_5-mini-instruct_probs").gte('microsoft_Phi-3_5-mini-instruct_probs',.7).eq('status','available').execute()
+    hard = supabase.table("rct_df_updated").select("user,question,question_id,label,status,microsoft_Phi-3_5-mini-instruct_probs").lt('microsoft_Phi-3_5-mini-instruct_probs',.7).eq('status','available').execute()
 
     return easy,hard
 
@@ -79,14 +79,18 @@ with st.sidebar:
     st.html(""" <style>
             [data-testid="stSidebarContent"] {color: black;background-color: LightSlateGrey;}
             </style>""")
-    st.write("**Welcome to this Cochrane labeller app.** \n\n To start, please fill out your user initials below. You just need to do this once. Then check the box on the right to display the question.")
+    st.write("**Welcome to this Cochrane labeller app.** \n\n :rocket: To start, please fill out your user initials below. You just need to do this once. Then check the box on the right to display the question.")
  
     # st.markdown("""<style> 
     #             div[data-testid="InputInstructions"] > span:nth-child(1) {visibility: hidden;} 
     #             </style>""",unsafe_allow_html=True)
     user_id = st.text_input("placeholder",value=None,key='user_id',placeholder='User initials here',label_visibility='hidden')
     st.write("")
-    st.write("""After reading the question, pick an answer. If you don't know the answer or want to skip the question, just click submit. \n\nAfter submitting, a 'Next question' button will appear below. Click to load the next question, and check the box on the right to display the question.""")
+    st.write(""" :white_check_mark: After reading the question, pick an answer. If you don't know the answer or want to skip the question, just click submit.
+             \n\n :arrow_right: After submitting, a 'Next question' button will appear below. Click to load the next question, and check the box on the right again. 
+             You can label as many items you want and to stop, simply close this window. To continue later, just navigate to this page again, fill out your initials, and label away!
+             \n\n :question: In case of questions or app malfunction send a mail to b.m.a.van_dijk[at]lumc.nl.
+             \n\n :handshake: Thank you for your participation!""")
     if ss['disable']:
         st.markdown("""<style> div.stButton > button:first-child {color:white} </style>""", unsafe_allow_html=True)
         st.button(label="Next example", on_click=next)
@@ -99,7 +103,8 @@ if st.checkbox('Display the next question',key="user_id_start",disabled=ss['chec
             st.subheader(ss['Q'])
             #st.write(ss['Q_id'])
             with st.form('form_k'):
-                label = st.radio('Select an answer.', ['Positive', 'Neutral', 'Negative'], horizontal=True,index=None,key='label', disabled=ss['disable'])
+                #st.markdown("""<style> div[class*="stRadio"] > label > div[data-testid="stMarkdownContainer"] > p {font-size: 16px;}</style>""", unsafe_allow_html=True)
+                label = st.radio('***Is this considered a Positive, Neutral or Negative health outcome?***', ['Positive', 'Neutral', 'Negative'], horizontal=True,index=None,key='label', disabled=ss['disable'])
                 st.form_submit_button('Submit', on_click=submit(label,'done',user_id,ss['Q_id']), disabled= True if label in ['Positive', 'Neutral', 'Negative'] else False)
 
     else:
