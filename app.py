@@ -35,7 +35,7 @@ def row_sampler(_easy,_hard):
         sampled_row = random.sample(_hard.data, min(1, len(_hard.data)))
                         
     for row in sampled_row: #-- update sampled row: in progress
-        response = (supabase.table("rct_df").update({"status": "in_progress"}).eq("question_id", row['question_id']).execute())
+        #response = (supabase.table("rct_df").update({"status": "in_progress"}).eq("question_id", row['question_id']).execute())
         pass
 
     Qs, Qs_ids = [row['question'] for row in sampled_row], [row['question_id'] for row in sampled_row]
@@ -44,7 +44,7 @@ def row_sampler(_easy,_hard):
 
 #-- update db with label
 def submit(label,status,user,question_id):
-    response = (supabase.table("rct_df").update({"label":label, "status":status, "user":user}).eq("question_id", question_id).execute())
+    #response = (supabase.table("rct_df").update({"label":label, "status":status, "user":user}).eq("question_id", question_id).execute())
     ss['disable'] = True
     
 #-- fetch next item and empty cache + session state
@@ -52,6 +52,9 @@ def next():
     for key in ss.keys():
         del ss[key]
     st.cache_data.clear()
+
+def unlock_submit():
+    ss['disable_submit'] = True
 
 #-- get first items
 easy, hard = run_query()
@@ -68,22 +71,36 @@ if 'user_id_start' not in ss:
     ss['user_id_start'] = False
 if 'checkbox_closed' not in ss:
     ss['checkbox_closed'] = False
+if 'disable_submit' not in ss:
+    ss['disable_submit'] = True
 
 #-- add sidebar element for controlling flow + id
 with st.sidebar:
-    user_id = st.text_input("Enter username and press enter:",value=None,key='user_id',disabled=ss['user_id_start'])
+    st.html(""" <style>
+            [data-testid="stSidebarContent"] {color: black;background-color: LightSlateGrey;}
+            </style>""")
+    st.write("**Welcome to this Cochrane labeller app.** \n\n To start, please fill out your user initials below. You just need to do this once. Then check the box on the right to display the question.")
+ 
+    # st.markdown("""<style> 
+    #             div[data-testid="InputInstructions"] > span:nth-child(1) {visibility: hidden;} 
+    #             </style>""",unsafe_allow_html=True)
+    user_id = st.text_input("placeholder",value=None,key='user_id',placeholder='User initials here',label_visibility='hidden')
+    st.write("")
+    st.write("""After reading the question, pick an answer. If you don't know the answer or want to skip the question, just click submit. \n\nAfter submitting, a 'Next question' button will appear below. Click to load the next question, and check the box on the right to display the question.""")
     if ss['disable']:
+        st.markdown("""<style> div.stButton > button:first-child {color:white} </style>""", unsafe_allow_html=True)
         st.button(label="Next example", on_click=next)
 
 #-- here the actual labelling happens
-if st.checkbox('Check this box to save ID and start labelling!',key=f"user_id_start",disabled=ss['checkbox_closed']):
+if st.checkbox('Display the next question',key="user_id_start",disabled=ss['checkbox_closed']):
     if ss['user_id_start'] and user_id: #-- stop if no user id present
         ss['checkbox_closed'] = True #-- prevent getting disabled answer box
-        st.subheader(ss['Q'])
-        #st.write(ss['Q_id'])
-        with st.form('form_k'):
-            label = st.radio('Select', ['Positive', 'Neutral', 'Negative'], horizontal=True,index=None,key='label', disabled=ss['disable']) #--disabled=st.session_state['disable']
-            #st.write(ss.label)
-            st.form_submit_button('Submit', on_click=submit(label,'done',user_id,ss['Q_id']))
+        with st.container(height=None):
+            st.subheader(ss['Q'])
+            #st.write(ss['Q_id'])
+            with st.form('form_k'):
+                label = st.radio('Select an answer.', ['Positive', 'Neutral', 'Negative'], horizontal=True,index=None,key='label', disabled=ss['disable'])
+                st.form_submit_button('Submit', on_click=submit(label,'done',user_id,ss['Q_id']), disabled= True if label in ['Positive', 'Neutral', 'Negative'] else False)
+
     else:
-        st.write('You did not submit a user ID.')
+        st.write('Uncheck the box above and please enter your user initials first.')
