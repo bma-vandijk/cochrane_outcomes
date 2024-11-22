@@ -36,7 +36,7 @@ def row_sampler(_easy,_hard):
         sampled_row = random.sample(_hard.data, min(1, len(_hard.data)))
                         
     for row in sampled_row: #-- update sampled row: in progress
-        response = (supabase.table("rct_df").update({"status": "in_progress"}).eq("question_id", row['question_id']).execute())
+        response = (supabase.table("rct_df_updated").update({"status": "in_progress"}).eq("question_id", row['question_id']).execute())
         pass
 
     Qs, Qs_ids = [row['question'] for row in sampled_row], [row['question_id'] for row in sampled_row]
@@ -45,7 +45,7 @@ def row_sampler(_easy,_hard):
 
 #-- update db with label
 def submit(label,status,user,question_id):
-    response = (supabase.table("rct_df").update({"label":label, "status":status, "user":user}).eq("question_id", question_id).execute())
+    response = (supabase.table("rct_df_updated").update({"label":label, "status":status, "user":user}).eq("question_id", question_id).execute())
     ss['disable'] = True
     
 #-- fetch next item and empty cache + session state
